@@ -1,0 +1,39 @@
+{
+  "name": "headscale-ui",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "codegen": "rm -rf src/gen;dotenv cross-var \"openapi-typescript %VITE_BASE_URL%/swagger/v1/openapiv2.json --output src/gen/openapi.ts\""
+  },
+  "dependencies": {
+    "element-plus": "^2.1.10",
+    "moment": "^2.29.3",
+    "openapi-typescript-fetch": "^1.1.2",
+    "sass": "^1.50.1",
+    "vue": "^3.2.25",
+    "vue-clipboard3": "^2.0.0",
+    "vue-router": "^4.0.14",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "cross-env": "^7.0.3",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^5.1.0",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "openapi-typescript": "^5.2.0",
+    "vite": "^2.9.5",
+    "typescript": "~4.5.5"
+  }
+}
