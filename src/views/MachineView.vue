@@ -4,7 +4,8 @@
             <el-table-column label="Machine">
                 <template #default="scope">
                     <div>{{ scope.row.name }}</div>
-                    <div>
+                    <div class="tag-list">
+                        <expiry-tag :expiry="scope.row.expiry" />
                         <route-mark :machineId="scope.row.id" />
                     </div>
                 </template>
@@ -19,6 +20,12 @@
                             @click="copy(addr)"
                         >{{ addr }}</el-tag>
                     </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="OS">
+                <template #default="scope">
+                    <div>{{ scope.row.hostInfo.os }}</div>
+                    <div>{{ shortVersion(scope.row.hostInfo.ipnVersion) }}</div>
                 </template>
             </el-table-column>
             <el-table-column label="Last Seen">
@@ -53,9 +60,10 @@ import useClipboard from 'vue-clipboard3'
 import { ElMessage } from 'element-plus'
 import RouteSettingsDialog from '@/components/RouteSettingsDialog.vue'
 import RouteMark from '@/components/RouteMark.vue'
+import ExpiryTag from '@/components/ExpiryTag.vue'
 
 export default defineComponent({
-  components: { RouteMark, RouteSettingsDialog },
+  components: { RouteMark, RouteSettingsDialog, ExpiryTag },
   setup () {
     const machines = ref<definitions['v1Machine'][]|undefined>([])
     const store = useStore()
@@ -98,7 +106,24 @@ export default defineComponent({
   methods: {
     openRouteSettingsDialog (machine: definitions['v1Machine']) {
       this.routeSettingsDialog?.open(machine)
+    },
+    shortVersion (val: string) {
+      try {
+        return val.split('-')[0]
+      } catch (e) {
+        return val
+      }
     }
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.machines-page {
+    .tag-list {
+        .el-tag {
+            margin-right: 3px;
+        }
+    }
+}
+</style>
