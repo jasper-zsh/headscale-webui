@@ -10,7 +10,7 @@ import fetcher from '@/fetcher'
 import { definitions } from '@/gen/openapi'
 
 export default defineComponent({
-  setup (props: any) {
+  setup () {
     const namespaces = ref<Array<definitions['v1Namespace']>|undefined>([])
 
     onMounted(async () => {

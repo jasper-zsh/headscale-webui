@@ -66,7 +66,7 @@ export default defineComponent({
     watch(namespace, async (n) => {
       const f = fetcher.path('/api/v1/machine').method('get').create()
       const res = await f({
-        namespace: namespace.value
+        namespace: n
       })
       machines.value = res.data.machines
     }, { immediate: true })
